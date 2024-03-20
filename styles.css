@@ -30,6 +30,17 @@ body {
   background-color: #111;
 }
 
+.hero {
+  color: white;
+  min-height: 20rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: var(--background) center/cover;
+}
+
 .footer {
   padding: 1.8rem;
   background: #82074a;
