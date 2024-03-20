@@ -1,1 +1,1 @@
-Start by running components.py then open example.html in your browser.
+Start by running **to_html.py** then open **example.html** in your browser.
