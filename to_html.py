@@ -1,5 +1,5 @@
 import os
-from enact.components import Card, navbar
+from enact.components import Card, html5, navbar, hero
 from enact.elements import Flex
 
 # example use case
@@ -18,19 +18,15 @@ new_card = Card(
                 )
 cards = Flex(*(new_card for _ in range(5)))
 
+header = hero(
+    title='Top Tourist Destinations',
+    img_src='https://images.wallpapersden.com/image/wl-mountain-peak-sky_16234.jpg',
+    description="Let's Get Started"
+)
 
-html = '''<html>
-  <head><link href="styles.css" rel="stylesheet" /></head>
-  <body>{body}</body>
-</html>'''
-hero = '<div class="hero" style="--background: url(https://images.wallpapersden.com/image/wl-mountain-peak-sky_16234.jpg);">\
-  <h1>Top Tourist Destinations</h1> \
-  <p>Let\'s Get Started</p> \
-  <button>Explore</button> \
-</div>'
 footer = '<footer class="footer">Beautiful and elegant CSS footer design with a logo placeholder, menu items and icon list. The design also contains an attractive minimal background.</footer>'
-body =  nav + hero + str(cards) + footer
-page = html.format(body=body)
+body =  nav + header + str(cards) + footer
+page = html5(body, 'styles.css')
 
 folder = os.path.dirname(__file__)
 with open(os.path.join(folder,'example.html'), 'w') as f:
