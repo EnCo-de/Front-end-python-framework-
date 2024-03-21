@@ -1,5 +1,16 @@
 from . import elements
 
+def html5(body='', css_file='', js_file=''): 
+    return f'''<!DOCTYPE html>
+<html>
+  <head><link href="{css_file}" rel="stylesheet" /></head>
+  <body>
+    {body.replace('\n','\n    ')}
+  <script src="{js_file}"></script>
+  </body>
+</html>'''
+
+
 class Component:
     def __init__(self):
         self.node = 'node'
@@ -33,5 +44,13 @@ def navbar(links: dict, logo_url: str = None):
             f'src={logo_url} height="50px" alt="logo"'), 
             ul, 
             arg_str='class="navbar"'
+            )
+    return str(node)
+
+def hero(title='Hero title', img_src='', description='Some information about the item.'):
+    node = elements.Div(
+            elements.H1(title),
+            elements.Pgf(description), 
+            arg_str=f'class="hero" style="--background: url({img_src});"'
             )
     return str(node)
