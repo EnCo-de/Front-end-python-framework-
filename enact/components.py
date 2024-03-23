@@ -35,16 +35,19 @@ class Card(Component):
 
 
 def navbar(links: dict, logo_url: str = None):
-    lis = [elements.Anch(value, key) for key, value in links.items()]
-    ul = elements.Ul(*lis, arg_str='style="list-style-type: none; margin: 0; padding: 0;"')
     if logo_url is None:
+        lis = [elements.Anch(value, key) for key, value in links.items()]
+        ul = elements.Ul(*lis, arg_str='style="list-style-type: none; margin: 0; padding: 0;"')
         node = elements.Nav(ul, arg_str='class="navbar"')
     else:
-        node = elements.Nav(elements.Img(
-            f'src={logo_url} height="50px" alt="logo"'), 
-            ul, 
-            arg_str='class="navbar"'
+        logo = elements.Anch('/', elements.Img(f'src={logo_url} height="50px" alt="logo"'))
+        lis = [elements.Anch(value, key) for key, value in links.items()]
+        ul = elements.Ul(
+            logo, 
+            *lis, 
+            arg_str='style="list-style-type: none; margin: 0; padding: 0 5%; width: -webkit-fill-available;"  class="container"'
             )
+        node = elements.Nav(ul, arg_str='class="navbar"')
     return str(node)
 
 def hero(title='Hero title', img_src='', description='Some information about the item.'):
@@ -54,3 +57,6 @@ def hero(title='Hero title', img_src='', description='Some information about the
             arg_str=f'class="hero" style="--background: url({img_src});"'
             )
     return str(node)
+
+def simple_footer(text=''):
+    return str(elements.Footer(text, arg_str='class="footer"'))
