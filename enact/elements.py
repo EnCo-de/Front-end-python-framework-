@@ -48,6 +48,10 @@ class Nav(Div):
     tag_name = 'nav'
 
 
+class Footer(Div):
+    tag_name = 'footer'
+
+
 class Flex(Div):
     def __init__(self, *contents, arg_str='', **kwargs):
         arg_str += ' style="display:flex; flex-wrap: wrap;"'
