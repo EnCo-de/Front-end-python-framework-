@@ -1,5 +1,5 @@
 import os
-from enact.components import Card, html5, navbar, hero
+from enact.components import Card, html5, navbar, hero, simple_footer
 from enact.elements import Flex
 
 # example use case
@@ -9,7 +9,16 @@ nav_links = {
     'pep-8': 'https://peps.python.org/pep-0008/',
     'f-strings': 'https://peps.python.org/pep-0701/'
 }
-nav = navbar(nav_links)
+nav = navbar(
+    nav_links, 
+    logo_url='https://www.strunkmedia.com/wp-content/uploads/2018/05/bigstock-Print-163213010.png'
+    )
+
+header = hero(
+    title='Top Tourist Destinations',
+    img_src='https://images.wallpapersden.com/image/wl-mountain-peak-sky_16234.jpg',
+    description="Let's Get Started"
+)
 
 new_card = Card(
                 title='Altea', 
@@ -18,16 +27,11 @@ new_card = Card(
                 )
 cards = Flex(*(new_card for _ in range(5)))
 
-header = hero(
-    title='Top Tourist Destinations',
-    img_src='https://images.wallpapersden.com/image/wl-mountain-peak-sky_16234.jpg',
-    description="Let's Get Started"
-)
-
-footer = '<footer class="footer">Beautiful and elegant CSS footer design with a logo placeholder, menu items and icon list. The design also contains an attractive minimal background.</footer>'
+footer = simple_footer('Beautiful and elegant CSS footer design with a logo placeholder, menu items and icon list. The design also contains an attractive minimal background.')
 body =  nav + header + str(cards) + footer
 page = html5(body, 'styles.css')
 
+# create html file
 folder = os.path.dirname(__file__)
 with open(os.path.join(folder,'example.html'), 'w') as f:
     f.write(page)
